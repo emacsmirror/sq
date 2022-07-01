@@ -3,6 +3,7 @@
 ;; Copyright (C) 2021 Justus Winter
 
 ;; Author: Justus Winter <justus@sequoia-pgp.org>
+;; Version: 0.1.1
 ;; Created: 23 Jun 2021
 ;; Keywords: tools data mail
 ;; URL: https://gitlab.com/sequoia-pgp/sqel
