@@ -93,7 +93,7 @@ specifically which bytes are parsed into OpenPGP values, use
 `sq-packet-hex-dump-region'.  See also `sq-packet-dump-region'
 for a less verbose version."
   (interactive "r")
-  (sq--invoke-region '("packet" "dump" "--mpi") b e))
+  (sq--invoke-region '("packet" "dump" "--mpis") b e))
 
 (defun sq-inspect-region (&optional b e)
   "Invokes 'sq inspect' on the region
