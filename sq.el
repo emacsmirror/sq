@@ -4,8 +4,9 @@
 
 ;; Author: Justus Winter <justus@sequoia-pgp.org>
 ;; Created: 23 Jun 2021
-;; Keywords: tools
+;; Keywords: tools data mail
 ;; URL: https://gitlab.com/sequoia-pgp/sqel
+;; Package-Requires: ((emacs "24.1"))
 
 ;; This file is not part of GNU Emacs.
 
