@@ -40,7 +40,7 @@
 ;;; Code:
 
 (defun sq--invoke-region (arguments &optional b e)
-  "Invokes sq with the given arguments on the region
+  "Invokes sq with the given arguments on the region.
 
 Displays the result in the *sq output* buffer."
   (let ((buffer (get-buffer-create "*sq output*")))
@@ -53,14 +53,14 @@ Displays the result in the *sq output* buffer."
     (display-message-or-buffer buffer)))
 
 (defun sq-invoke-region (arguments &optional b e)
-  "Invokes 'sq' with the given arguments on the region
+  "Invokes 'sq' with the given arguments on the region.
 
 Can be used to invoke arbitrary sq commands."
   (interactive "MInvoke on region: sq \nr")
   (sq--invoke-region (split-string arguments)))
 
 (defun sq-packet-dump-region (&optional b e)
-  "Invokes 'sq packet dump' on the region
+  "Invokes 'sq packet dump' on the region.
 
 Creates a human-readable description of the packet sequence.
 
@@ -72,7 +72,7 @@ parsed into OpenPGP values, use `sq-packet-hex-dump-region'."
   (sq--invoke-region '("packet" "dump") b e))
 
 (defun sq-packet-hex-dump-region (&optional b e)
-  "Invokes 'sq packet dump --hex' on the region
+  "Invokes 'sq packet dump --hex' on the region.
 
 Creates a human-readable description of the packet sequence with
 the raw octet stream similar to hexdump(1) annotated specifically
@@ -85,7 +85,7 @@ for a less verbose version."
   (sq--invoke-region '("packet" "dump" "--hex") b e))
 
 (defun sq-packet-mpi-dump-region (&optional b e)
-  "Invokes 'sq packet dump --mpi' on the region
+  "Invokes 'sq packet dump --mpi' on the region.
 
 Creates a human-readable description of the packet sequence with
 cryptographic artifacts.
@@ -98,7 +98,7 @@ for a less verbose version."
   (sq--invoke-region '("packet" "dump" "--mpis") b e))
 
 (defun sq-inspect-region (&optional b e)
-  "Invokes 'sq inspect' on the region
+  "Invokes 'sq inspect' on the region.
 
 Creates a high-level human-readable description of the OpenPGP
 artifact in the region."
@@ -106,7 +106,7 @@ artifact in the region."
   (sq--invoke-region '("inspect") b e))
 
 (defun sq-global-set-keys (&optional prefix)
-  "Installs global key bindings for sq
+  "Installs global key bindings for sq.
 
 This is a convenience function that installs global key bindings
 for all Sequoia-related functions with a common prefix.  The
