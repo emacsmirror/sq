@@ -39,27 +39,41 @@
 
 ;;; Code:
 
-(defun sq--invoke-region (arguments &optional b e)
-  "Invokes sq with the given arguments on the region.
+(defun sq--invoke-region (arguments &optional start end)
+  "Invokes sq with the given ARGUMENTS on the region.
 
-Displays the result in the *sq output* buffer."
+Displays the result in the *sq output* buffer.
+
+START and END are normally buffer positions specifying the part of the
+buffer to send to the process.
+If START is nil, that means to use the entire buffer contents; END is
+ignored.
+If START is a string, then send that string to the process
+instead of any buffer contents; END is ignored."
   (let ((buffer (get-buffer-create "*sq output*")))
     (with-current-buffer buffer
       (erase-buffer))
-    (apply 'call-process-region b e "sq" nil buffer t arguments)
+    (apply 'call-process-region start end "sq" nil buffer t arguments)
     (with-current-buffer buffer
       (delete-trailing-whitespace)
       (set-buffer-modified-p nil))
     (display-message-or-buffer buffer)))
 
-(defun sq-invoke-region (arguments &optional b e)
-  "Invokes 'sq' with the given arguments on the region.
+(defun sq-invoke-region (arguments &optional start end)
+  "Invokes 'sq' with the given ARGUMENTS on the region.
 
-Can be used to invoke arbitrary sq commands."
+Can be used to invoke arbitrary sq commands.
+
+START and END are normally buffer positions specifying the part of the
+buffer to send to the process.
+If START is nil, that means to use the entire buffer contents; END is
+ignored.
+If START is a string, then send that string to the process
+instead of any buffer contents; END is ignored."
   (interactive "MInvoke on region: sq \nr")
-  (sq--invoke-region (split-string arguments)))
+  (sq--invoke-region (split-string arguments) start end))
 
-(defun sq-packet-dump-region (&optional b e)
+(defun sq-packet-dump-region (&optional start end)
   "Invokes 'sq packet dump' on the region.
 
 Creates a human-readable description of the packet sequence.
@@ -67,11 +81,18 @@ Creates a human-readable description of the packet sequence.
 To print cryptographic artifacts, use
 `sq-packet-mpi-dump-region'.  To print the raw octet stream
 similar to hexdump(1) annotated specifically which bytes are
-parsed into OpenPGP values, use `sq-packet-hex-dump-region'."
-  (interactive "r")
-  (sq--invoke-region '("packet" "dump") b e))
+parsed into OpenPGP values, use `sq-packet-hex-dump-region'.
 
-(defun sq-packet-hex-dump-region (&optional b e)
+START and END are normally buffer positions specifying the part of the
+buffer to send to the process.
+If START is nil, that means to use the entire buffer contents; END is
+ignored.
+If START is a string, then send that string to the process
+instead of any buffer contents; END is ignored."
+  (interactive "r")
+  (sq--invoke-region '("packet" "dump") start end))
+
+(defun sq-packet-hex-dump-region (&optional start end)
   "Invokes 'sq packet dump --hex' on the region.
 
 Creates a human-readable description of the packet sequence with
@@ -80,11 +101,18 @@ which bytes are parsed into OpenPGP values.
 
 To print cryptographic artifacts, use
 `sq-packet-mpi-dump-region'.  See also `sq-packet-dump-region'
-for a less verbose version."
-  (interactive "r")
-  (sq--invoke-region '("packet" "dump" "--hex") b e))
+for a less verbose version.
 
-(defun sq-packet-mpi-dump-region (&optional b e)
+START and END are normally buffer positions specifying the part of the
+buffer to send to the process.
+If START is nil, that means to use the entire buffer contents; END is
+ignored.
+If START is a string, then send that string to the process
+instead of any buffer contents; END is ignored."
+  (interactive "r")
+  (sq--invoke-region '("packet" "dump" "--hex") start end))
+
+(defun sq-packet-mpi-dump-region (&optional start end)
   "Invokes 'sq packet dump --mpi' on the region.
 
 Creates a human-readable description of the packet sequence with
@@ -93,17 +121,31 @@ cryptographic artifacts.
 To print the raw octet stream similar to hexdump(1) annotated
 specifically which bytes are parsed into OpenPGP values, use
 `sq-packet-hex-dump-region'.  See also `sq-packet-dump-region'
-for a less verbose version."
-  (interactive "r")
-  (sq--invoke-region '("packet" "dump" "--mpis") b e))
+for a less verbose version.
 
-(defun sq-inspect-region (&optional b e)
+START and END are normally buffer positions specifying the part of the
+buffer to send to the process.
+If START is nil, that means to use the entire buffer contents; END is
+ignored.
+If START is a string, then send that string to the process
+instead of any buffer contents; END is ignored."
+  (interactive "r")
+  (sq--invoke-region '("packet" "dump" "--mpis") start end))
+
+(defun sq-inspect-region (&optional start end)
   "Invokes 'sq inspect' on the region.
 
 Creates a high-level human-readable description of the OpenPGP
-artifact in the region."
+artifact in the region.
+
+START and END are normally buffer positions specifying the part of the
+buffer to send to the process.
+If START is nil, that means to use the entire buffer contents; END is
+ignored.
+If START is a string, then send that string to the process
+instead of any buffer contents; END is ignored."
   (interactive "r")
-  (sq--invoke-region '("inspect") b e))
+  (sq--invoke-region '("inspect") start end))
 
 (defun sq-global-set-keys (&optional prefix)
   "Installs global key bindings for sq.
