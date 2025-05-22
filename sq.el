@@ -1,9 +1,9 @@
 ;;; sq.el --- Bindings for Sequoia PGP's cli  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021 Justus Winter
+;; Copyright (C) 2025 Justus Winter
 
 ;; Author: Justus Winter <justus@sequoia-pgp.org>
-;; Version: 0.2.0
+;; Version: 0.3.0
 ;; Created: 23 Jun 2021
 ;; Keywords: tools data mail
 ;; URL: https://gitlab.com/sequoia-pgp/sqel
