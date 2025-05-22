@@ -74,7 +74,7 @@ instead of any buffer contents; END is ignored."
   (sq--invoke-region (split-string arguments) start end))
 
 (defun sq-packet-dump-region (&optional start end)
-  "Invokes 'sq toolbox packet dump' on the region.
+  "Invokes 'sq packet dump' on the region.
 
 Creates a human-readable description of the packet sequence.
 
@@ -90,10 +90,10 @@ ignored.
 If START is a string, then send that string to the process
 instead of any buffer contents; END is ignored."
   (interactive "r")
-  (sq--invoke-region '("toolbox" "packet" "dump") start end))
+  (sq--invoke-region '("packet" "dump") start end))
 
 (defun sq-packet-hex-dump-region (&optional start end)
-  "Invokes 'sq toolbox packet dump --hex' on the region.
+  "Invokes 'sq packet dump --hex' on the region.
 
 Creates a human-readable description of the packet sequence with
 the raw octet stream similar to hexdump(1) annotated specifically
@@ -110,10 +110,10 @@ ignored.
 If START is a string, then send that string to the process
 instead of any buffer contents; END is ignored."
   (interactive "r")
-  (sq--invoke-region '("toolbox" "packet" "dump" "--hex") start end))
+  (sq--invoke-region '("packet" "dump" "--hex") start end))
 
 (defun sq-packet-mpi-dump-region (&optional start end)
-  "Invokes 'sq toolbox packet dump --mpi' on the region.
+  "Invokes 'sq packet dump --mpi' on the region.
 
 Creates a human-readable description of the packet sequence with
 cryptographic artifacts.
@@ -130,7 +130,7 @@ ignored.
 If START is a string, then send that string to the process
 instead of any buffer contents; END is ignored."
   (interactive "r")
-  (sq--invoke-region '("toolbox" "packet" "dump" "--mpis") start end))
+  (sq--invoke-region '("packet" "dump" "--mpis") start end))
 
 (defun sq-inspect-region (&optional start end)
   "Invokes 'sq inspect' on the region.
